@@ -7,26 +7,58 @@
     "build:user": "npm-run-all -s build:*:user",
     "build:sass:user": "node-sass src/user/scss/main.scss -o dist/user/css",
     "build:pug:user": "pug src/user/pug/*.pug -o dist/user/ --pretty",
-    "build:ugly:user": "postcss dist/user/css/main.css --use autoprefixer -d dist/user/css && uglifycss dist/user/css/main.css > dist/user/css/main.min.css",
+    "build:ugly_css:user": "postcss dist/user/css/main.css --use autoprefixer -d dist/user/css && uglifycss dist/user/css/main.css > dist/user/css/main.min.css",
+    "build:js:user": "rollup src/user/js/index.js --format iife --file dist/user/js/main.js",
+    "build:ugly_js:user": "babel dist/user/js/main.js --presets minify --source-maps",
+    "build:admin": "npm-run-all -s build:*:admin",
+    "build:sass:admin": "node-sass src/admin/scss/main.scss -o dist/admin/css",
+    "build:pug:admin": "pug src/admin/pug/*.pug -o dist/admin/ --pretty",
+    "build:ugly:admin": "postcss dist/admin/css/main.css --use autoprefixer -d dist/admin/css && uglifycss dist/admin/css/main.css > dist/admin/css/main.min.css",
+    "build:js:admin": "rollup src/admin/js/index.js --format iife --file dist/admin/js/main.js",
+    "build:ugly_js:admin": "babel dist/admin/js/main.js --presets minify --source-maps",
     "watch:user": "npm-run-all -p watch:*:user",
     "watch:sass:user": "yarn build:sass:user -w",
     "watch:pug:user": "yarn build:pug:user -w",
-    "watch:server:user": "yarn browser-sync start -s -w --ss ./dist/user --no-notify"
+    "watch:js:user": "yarn build:js:user -w",
+    "watch:js_ugly:user": "sleep 1 && yarn build:ugly_js:user -w --out-file dist/user/js/main.min.js",
+    "watch:server:user": "yarn browser-sync start -s -w --ss ./dist/user --no-notify",
+    "watch:admin": "npm-run-all -p watch:*:admin",
+    "watch:sass:admin": "yarn build:sass:admin",
+    "watch:pug:admin": "yarn build:pug:admin -w",
+    "watch:js:admin": "yarn build:js:admin -w",
+    "watch:js_ugly:admin": "sleep 1 && yarn build:ugly_js:admin -w --out-file dist/admin/js/main.min.js",
+    "watch:server:admin": "yarn browser-sync start -s -w --ss ./dist/admin --no-notify",
+    "lint:scss": "stylelint \"src/**/*.scss\"",
+    "lint:js": "eslint \"src/**/*.js\"",
+    "test": "pretty-quick --staged & npm-run-all -s lint:*"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
     "autoprefixer": "^9.7.4",
+    "babel-preset-minify": "^0.5.1",
     "browser-sync": "^2.26.7",
-    "live-server": "^1.2.1",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.1",
+    "husky": "^4.2.3",
     "node-sass": "^4.13.1",
     "npm-run-all": "^4.1.5",
     "postcss-cli": "^7.1.0",
     "postcss-momentum-scrolling": "^2.3.14",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1",
     "pug": "^2.0.4",
     "pug-cli": "^1.0.0-alpha6",
+    "rollup": "^1.31.1",
+    "stylelint": "^13.2.0",
+    "stylelint-config-standard": "^20.0.0",
+    "uglify-js": "^3.8.0",
     "uglifycss": "^0.0.29"
   },
   "postcss": {
@@ -44,5 +76,10 @@
     "last 10 version",
     "not dead",
     "iOS >= 9"
-  ]
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn test"
+    }
+  }
 }
