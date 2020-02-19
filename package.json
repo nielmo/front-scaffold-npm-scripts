@@ -1,0 +1,48 @@
+{
+  "name": "front-scaffold-npm-scripts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:user": "npm-run-all -s build:*:user",
+    "build:sass:user": "node-sass src/user/scss/main.scss -o dist/user/css",
+    "build:pug:user": "pug src/user/pug/*.pug -o dist/user/ --pretty",
+    "build:ugly:user": "postcss dist/user/css/main.css --use autoprefixer -d dist/user/css && uglifycss dist/user/css/main.css > dist/user/css/main.min.css",
+    "watch:user": "npm-run-all -p watch:*:user",
+    "watch:sass:user": "yarn build:sass:user -w",
+    "watch:pug:user": "yarn build:pug:user -w",
+    "watch:server:user": "yarn browser-sync start -s -w --ss ./dist/user --no-notify"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "autoprefixer": "^9.7.4",
+    "browser-sync": "^2.26.7",
+    "live-server": "^1.2.1",
+    "node-sass": "^4.13.1",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^7.1.0",
+    "postcss-momentum-scrolling": "^2.3.14",
+    "pug": "^2.0.4",
+    "pug-cli": "^1.0.0-alpha6",
+    "uglifycss": "^0.0.29"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {},
+      "postcss-momentum-scrolling": [
+        "hidden",
+        "scroll",
+        "auto",
+        "inherit"
+      ]
+    }
+  },
+  "browserslist": [
+    "last 10 version",
+    "not dead",
+    "iOS >= 9"
+  ]
+}
