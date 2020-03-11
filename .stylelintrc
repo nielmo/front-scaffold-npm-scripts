@@ -1,7 +1,6 @@
 {
   "extends": "stylelint-config-standard",
   "ignoreFiles": [
-    "src/**/scss/generic/*.scss",
     "src/**/scss/tools/*.scss",
     "src/**/scss/trumps/*.scss",
   ],
