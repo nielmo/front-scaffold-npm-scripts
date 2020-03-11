@@ -1,0 +1,11 @@
+linter:
+  eslint:
+    npm_install: true
+    config: '.eslintrc'
+    ext: 'js,jsx'
+
+  stylelint:
+    root_dir: "src"
+    npm_install: true
+    config: '../.stylelintrc'
+    glob: '**/*.{css,scss}'
