@@ -5,6 +5,7 @@ linter:
     ext: 'js,jsx'
 
   stylelint:
+    root_dir: "src"
     npm_install: true
-    config: '.stylelintrc'
+    config: '../.stylelintrc'
     glob: '**/*.{css,scss}'
