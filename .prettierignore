@@ -1,0 +1,3 @@
+# Ignore .min files here
+dist/user/js/smoothScroll.min.js
+dist/user/css/main.min.css
