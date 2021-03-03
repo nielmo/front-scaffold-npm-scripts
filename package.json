@@ -55,7 +55,7 @@
     "postcss-momentum-scrolling": "^2.3.14",
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "pug-cli": "^1.0.0-alpha6",
     "rollup": "^1.31.1",
     "stylelint": "^13.2.0",
